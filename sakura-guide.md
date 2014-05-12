@@ -1,3 +1,7 @@
+[目錄](https://github.com/AndyShiue/sakura-guide/blob/master/TOC.md)
+
+---
+
 落櫻玩了這麼久 也來寫一篇攻略好了  
 雖然我也只是一個很弱的無課*(真的很弱......)*  
 不過想給新的玩家提供一下全方位的介紹
