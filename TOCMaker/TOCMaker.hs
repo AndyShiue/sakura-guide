@@ -3,7 +3,6 @@ module Main where
 import System.IO
 
 import Data.Maybe
-import Control.Monad
 
 import Text.Regex.Posix
 
@@ -31,13 +30,13 @@ contentUrl :: String
 contentUrl = "https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md"
 
 headerToLink :: Header -> String
-headerToLink (Header title lv) = replicate (2*lv) ' ' ++ "- [" ++ title ++ "](" ++ contentUrl ++ "#" ++ title ++ ")"
+headerToLink (Header title lv) = replicate (2 * lv) ' ' ++ "- [" ++ title ++ "](" ++ contentUrl ++ "#" ++ title ++ ")"
 
 trailingHashCount :: String -> Int
 trailingHashCount = length . takeWhile (\c -> c == '#')
 
 trimHeader :: String -> Maybe String
-trimHeader = fmap reverse . join . fmap removeTrailingHashesAndSpaces . fmap reverse . removeTrailingHashesAndSpaces
+trimHeader header = removeTrailingHashesAndSpaces header >>= return . reverse >>= removeTrailingHashesAndSpaces >>= return . reverse
 
 removeTrailingHashesAndSpaces :: String -> Maybe String
 removeTrailingHashesAndSpaces str = case removeTrailingHashesAndSpaces' str of
