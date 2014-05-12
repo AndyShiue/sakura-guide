@@ -1,14 +1,13 @@
-module TOCMaker where
+module Main where
+
+import System.IO
 
 import Data.Maybe
-import Data.Either.Unwrap
 import Control.Monad
 
 import Text.Regex.Posix
 
 import Text.Parsec
-import Text.Parsec.String
-import Text.Parsec.Combinator
 
 data Header = Header
               String -- title
@@ -18,13 +17,21 @@ instance Show Header where
   show (Header title lv) = "(Header " ++ title ++ " " ++ show lv ++ ")"
 
 main :: IO ()
-main = do content <- readFile "../落櫻散華抄.md"
+main = do hSetBuffering stdout NoBuffering
+          putStr "Input the path of your markdown file: "
+          input <- getLine
+          content <- readFile input
+          putStr "Output to: "
+          out <- getLine
           let ls = lines content
           let headerStrs = filter (\str -> str =~ "#+.*") ls
-          writeFile "../TOC.md" . unlines . map headerToLink . map (\h -> Header (fromJust . trimHeader $ h) (trailingHashCount h)) $ headerStrs
+          writeFile out . unlines . map headerToLink . map (\h -> Header (fromJust . trimHeader $ h) (trailingHashCount h)) $ headerStrs
+
+contentUrl :: String
+contentUrl = "https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md"
 
 headerToLink :: Header -> String
-headerToLink (Header title lv) = replicate (2*lv) ' ' ++ "- [" ++ title ++ "](" ++ "https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#" ++ title ++ ")"
+headerToLink (Header title lv) = replicate (2*lv) ' ' ++ "- [" ++ title ++ "](" ++ contentUrl ++ "#" ++ title ++ ")"
 
 trailingHashCount :: String -> Int
 trailingHashCount = length . takeWhile (\c -> c == '#')
@@ -34,7 +41,7 @@ trimHeader = fmap reverse . join . fmap removeTrailingHashesAndSpaces . fmap rev
 
 removeTrailingHashesAndSpaces :: String -> Maybe String
 removeTrailingHashesAndSpaces str = case removeTrailingHashesAndSpaces' str of
-                                         Left err -> Nothing
+                                         Left _ -> Nothing
                                          Right val -> Just val
   where removeTrailingHashesAndSpaces' str = parse (do many $ oneOf "#"
                                                        spaces
