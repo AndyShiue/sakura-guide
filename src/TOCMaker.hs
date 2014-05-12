@@ -24,7 +24,7 @@ main = do content <- readFile "../落櫻散華抄.md"
           writeFile "../TOC.md" . unlines . map headerToLink . map (\h -> Header (fromJust . trimHeader $ h) (trailingHashCount h)) $ headerStrs
 
 headerToLink :: Header -> String
-headerToLink (Header title lv) = replicate (2*lv) ' ' ++ "- [" ++ title ++ "](" ++ "https://github.com/AndyShiue/sakura-guide/blob/master/%E8%90%BD%E6%AB%BB%E6%95%A3%E8%8F%AF%E6%8A%84.md#" ++ title ++ ")"
+headerToLink (Header title lv) = replicate (2*lv) ' ' ++ "- [" ++ title ++ "](" ++ "https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#" ++ title ++ ")"
 
 trailingHashCount :: String -> Int
 trailingHashCount = length . takeWhile (\c -> c == '#')
