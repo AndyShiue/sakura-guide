@@ -19,30 +19,32 @@ main :: IO ()
 main = do hSetBuffering stdout NoBuffering
           putStr "Input the path of your markdown file: "
           input <- getLine
+          putStr "Input your webpage: "
+          webpage <- getLine
           content <- readFile input
           putStr "Output to: "
           out <- getLine
           let ls = lines content
           let headerStrs = filter (\str -> str =~ "#+.*") ls
-          writeFile out . unlines . map headerToLink . map (\h -> Header (fromJust . trimHeader $ h) (trailingHashCount h)) $ headerStrs
+          writeFile out . unlines . map (headerToLink webpage) . map (\h -> Header (fromJust . trimHeader $ h) (leadingHashCount h)) $ headerStrs
 
-contentUrl :: String
-contentUrl = "https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md"
+headerToLink :: String -> Header -> String
+headerToLink webpage (Header title lv) = replicate (2 * lv) ' ' ++ "- [" ++ title ++ "](" ++ webpage ++ "#" ++ map spaceToDash title ++ ")"
 
-headerToLink :: Header -> String
-headerToLink (Header title lv) = replicate (2 * lv) ' ' ++ "- [" ++ title ++ "](" ++ contentUrl ++ "#" ++ title ++ ")"
+spaceToDash :: Char -> Char
+spaceToDash c = if c == ' ' then '-' else c
 
-trailingHashCount :: String -> Int
-trailingHashCount = length . takeWhile (\c -> c == '#')
+leadingHashCount :: String -> Int
+leadingHashCount = length . takeWhile (\c -> c == '#')
 
 trimHeader :: String -> Maybe String
-trimHeader header = removeTrailingHashesAndSpaces header >>= return . reverse >>= removeTrailingHashesAndSpaces >>= return . reverse
+trimHeader header = removeLeadingHashesAndSpaces header >>= return . reverse >>= removeLeadingHashesAndSpaces >>= return . reverse
 
-removeTrailingHashesAndSpaces :: String -> Maybe String
-removeTrailingHashesAndSpaces str = case removeTrailingHashesAndSpaces' str of
-                                         Left _ -> Nothing
-                                         Right val -> Just val
-  where removeTrailingHashesAndSpaces' str = parse (do many $ oneOf "#"
-                                                       spaces
-                                                       remained <- many anyToken
-                                                       return remained) "" str
+removeLeadingHashesAndSpaces :: String -> Maybe String
+removeLeadingHashesAndSpaces str = case removeLeadingHashesAndSpaces' str of
+                                       Left _ -> Nothing
+                                       Right val -> Just val
+  where removeLeadingHashesAndSpaces' str = parse (do many $ oneOf "#"
+                                                      spaces
+                                                      remained <- many anyToken
+                                                      return remained) "" str
