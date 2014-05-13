@@ -869,4 +869,6 @@ SSR的則只能進化N到SSR的所有卡片 周末的超上階活動會送
 ---
 
 ![CC-BY-SA](http://i.creativecommons.org/l/by-sa/3.0/tw/88x31.png)  
-本著作由AndyShiue製作，以創用CC 姓名標示-相同方式分享 3.0 台灣 授權條款釋出。
+本著作由AndyShiue製作，以[創用CC 姓名標示-相同方式分享 3.0 台灣][CC]授權條款釋出。
+
+[CC]: http://creativecommons.org/licenses/by-sa/3.0/tw/
