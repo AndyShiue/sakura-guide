@@ -93,7 +93,6 @@
     - [靈能之道](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#靈能之道)
   - [戀愛](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#戀愛)
     - [約會](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#約會)
-      - [回家模式](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#回家模式)
     - [閒聊](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#閒聊)
     - [送禮](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#送禮)
     - [告白](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#告白)
