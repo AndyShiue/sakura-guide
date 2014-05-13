@@ -88,3 +88,5 @@
     - [約會藥水](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#約會藥水)
   - [特務機構](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#特務機構)
     - [結晶](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#結晶)
+    - [機構等級](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#機構等級)
+    - [靈能建設](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#靈能建設)
