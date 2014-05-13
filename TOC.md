@@ -90,3 +90,5 @@
     - [結晶](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#結晶)
     - [機構等級](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#機構等級)
     - [靈能建設](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#靈能建設)
+    - [靈能之道](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#靈能之道)
+  - [戀愛](https://github.com/AndyShiue/sakura-guide/blob/master/sakura-guide.md#戀愛)
